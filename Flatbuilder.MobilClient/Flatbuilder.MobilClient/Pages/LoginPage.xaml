@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Fb.MC.Views"
+             x:Class="Fb.MC.Views.LoginPage"
+             x:Name="LPage">
+    <StackLayout
+            HorizontalOptions="Center" 
+            VerticalOptions="Center">
+       
+        <StackLayout
+             Spacing="10"
+             Padding="20">
+            <StackLayout.BindingContext>
+                <local:LoginPageModel/>
+            </StackLayout.BindingContext>
+
+            <Label 
+                Text="Please log in!"  
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"
+                FontSize="Large"
+                FontAttributes="Bold"/>
+            <Editor 
+                x:Name="UserName"
+                HeightRequest="50"
+                AutoSize="TextChanges"
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"  
+                Placeholder="Name"
+                Text="{Binding UserName}"/>
+            <Editor 
+                AutoSize="TextChanges"
+                HeightRequest="50"
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"  
+                Placeholder="Password"
+                IsEnabled="False"/>
+            <Button 
+                Text="Log in" 
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"  
+                IsVisible="True"
+                IsEnabled="False"
+                Command="{Binding LoginCommand}"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

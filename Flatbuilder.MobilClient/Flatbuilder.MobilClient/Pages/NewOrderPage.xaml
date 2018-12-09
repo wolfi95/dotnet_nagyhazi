@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             x:Class="Fb.MC.Views.NewOrderPage">
+    <ContentPage.Content>
+        <StackLayout
+            Padding="5,15,0,5">
+            <Label 
+                Text="Starting Date: "
+                FontAttributes="Bold"/>
+            <DatePicker 
+                Date="{Binding StartDate}"
+                MinimumDate="{Binding MinDateStart}"
+                MaximumDate="{Binding MaxDateStart}"
+                HorizontalOptions="Start"/>
+            <Label 
+                Text="Ending Date: "
+                FontAttributes="Bold"/>
+            <DatePicker 
+                Date="{Binding EndDate}"
+                MinimumDate="{Binding MinDateEnd}"
+                HorizontalOptions="Start"
+                />
+            <Label 
+                Text="Available Rooms: "
+                FontAttributes="Bold"/>
+            <StackLayout 
+                Orientation="Horizontal"
+                Spacing="20">
+                <StackLayout
+                    Orientation="Vertical"
+                    HorizontalOptions="Center">
+                    <Label 
+                        Text="Bedroom:"
+                        FontAttributes="Bold"/>
+                    <Picker
+                        WidthRequest="25"
+                        HorizontalOptions="Center"
+                        x:Name="Bedrooms"
+                        Title="Pick Number"
+                        ItemsSource="{Binding Bpicker, Mode=OneWay}"
+                        SelectedItem="{Binding SelectedB, Mode=TwoWay}"/>
+                </StackLayout>
+                <StackLayout
+                    Orientation="Vertical"
+                    HorizontalOptions="Center">
+                    <Label 
+                        Text="Kitchen:"
+                        FontAttributes="Bold"/>
+                    <Picker 
+                        WidthRequest="25"
+                        HorizontalOptions="Center"
+                        x:Name="Kitchens"
+                        Title="Pick Number"
+                        ItemsSource="{Binding Kpicker, Mode=OneWay}"
+                        SelectedItem="{Binding SelectedK, Mode=TwoWay}"/>
+                </StackLayout>
+                <StackLayout
+                    Orientation="Vertical"
+                    HorizontalOptions="Center">
+                    <Label 
+                        Text="Shower:"
+                        FontAttributes="Bold"/>
+                    <Picker 
+                        WidthRequest="25"
+                        HorizontalOptions="Center"
+                        x:Name="Showers"
+                        Title="Pick Number"
+                        ItemsSource="{Binding Spicker, Mode=OneWay}"
+                        SelectedItem="{Binding SelectedS, Mode=TwoWay}"/>
+                </StackLayout>
+            </StackLayout>
+            <input:AdvancedSlider
+                MinValue="0"
+                MaxValue="20"
+                Scale="1"
+                Title="Service tip:"
+                ValueSuffix="%"
+                ValuePrefix="Tip:"
+                Value="{Binding Tip, Mode=OneWayToSource}"/>
+            <StackLayout
+                Orientation="Horizontal">
+                <Label 
+                    Text="Overall Price: "
+                    FontAttributes="Bold"
+                    VerticalOptions="EndAndExpand"/>
+                <Label 
+                    Text="{Binding Price}"
+                    VerticalOptions="EndAndExpand"/>
+                <Button 
+                    Command="{Binding CreateOrderCommand}"
+                    Text="Create"
+                    HorizontalOptions="EndAndExpand"
+                    VerticalOptions="EndAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Fb.MC.Views"
+             xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
+             xmlns:ownb="clr-namespace:Fb.MC.Behaviorss"
+             x:Class="Fb.MC.Views.MainPage"
+             x:Name="MPage">
+    <ContentPage.Content>
+        <StackLayout
+            Padding="5,15,0,5">
+            <Label 
+                FontAttributes="Bold"
+                Text="{Binding User.Name, StringFormat='User: {0}'}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                FontSize="Large">
+            </Label>
+            <Button
+                Text="Create Order"
+                HorizontalOptions="End"
+                Command="{Binding CreateOrderCommand}"/>
+            <Label
+                Text="Active Orders:"
+                FontAttributes="Bold"
+                FontSize="Medium"/>
+            <ListView 
+                x:Name="lv"
+                ItemsSource="{Binding Orders}"
+                HasUnevenRows="True"
+                SelectedItem="{Binding Selected}" SeparatorVisibility="Default">
+                <ListView.Behaviors>
+                    <b:EventHandlerBehavior EventName="ItemSelected">
+                        <b:InvokeCommandAction Command="{Binding DetailsCommand}"/>
+                    </b:EventHandlerBehavior>
+                    <ownb:ListViewNoSelectionBehavior/>
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout
+                                Padding="0,5,0,5">
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <Label
+                                        Text="Id: "
+                                        FontAttributes="Bold"/>
+                                    <Label
+                                        Text="{Binding Id}"/>
+                                </StackLayout>
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <Label
+                                        Text="Start: "
+                                        FontAttributes="Bold"/>
+                                    <Label
+                                        Text="{Binding StartDate}"/>
+                                    <Label
+                                        Text="End: "
+                                        FontAttributes="Bold"/>
+                                    <Label
+                                        Text="{Binding EndDate}"/>
+                                </StackLayout>
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <Label
+                                        Text="Location: "
+                                        FontAttributes="Bold"/>
+                                    <Label
+                                        Text="{Binding Location}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
