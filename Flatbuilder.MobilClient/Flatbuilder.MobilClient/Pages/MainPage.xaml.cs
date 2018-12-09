@@ -16,10 +16,11 @@ namespace Fb.MC.Views
 
         public MainPage()
         {
-            MessagingCenter.Subscribe<LoginPageModel>(this, "Login",
+            MessagingCenter.Subscribe<MainPageModel>(this, "Click",
                async (sender) =>
                {
-                   await MPage.Animate(new ScaleToAnimation { Duration = "2000", Scale = 200 });
+                   await MPage.Animate(new ScaleToAnimation { Duration = "4000", Scale = 200 });
+                   sender.tcs.SetResult(true);
                });
             InitializeComponent();
         }

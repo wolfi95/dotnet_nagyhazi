@@ -15,7 +15,7 @@ namespace Fb.MC.Views
 {
     class MainPageModel : FreshBasePageModel
     {
-        //public event PropertyChangedEventHandler PropertyChanged;
+        public TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
 
         static readonly Uri baseAddress = new Uri("http://10.0.2.2:51502/");
 
@@ -59,6 +59,8 @@ namespace Fb.MC.Views
                 {
                     if (Selected == null)
                         return;
+                    //MessagingCenter.Send(this, "Click");
+                    //await tcs.Task;
                     await CoreMethods.PushPageModel<DetailsPageModel>(Selected);
                 }
                 catch (Exception e)
