@@ -6,6 +6,9 @@
     <ContentPage.Content>
         <StackLayout
             Padding="5,15,0,5">
+            <StackLayout.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Left" Command="{Binding SwipeCommand}" CommandParameter="Left"/>
+            </StackLayout.GestureRecognizers>
             <Button
                 Command="{Binding DeleteOrderCommand}"
                 Text="Delete"

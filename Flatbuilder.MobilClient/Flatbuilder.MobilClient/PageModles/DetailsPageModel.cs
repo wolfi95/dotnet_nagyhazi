@@ -29,6 +29,8 @@ namespace Fb.MC.Views
             }
         }
         public ICommand DeleteOrderCommand { get; }
+        public ICommand SwipeCommand { get; }
+
 
         public override void Init(object initData)
         {
@@ -41,6 +43,11 @@ namespace Fb.MC.Views
                 async () => 
                 {
                     await DeleteOrder(Order.Id);
+                });
+            SwipeCommand = new Command(
+                async () =>
+                {
+                    await this.CoreMethods.PopPageModel();
                 });
         }
 
