@@ -54,6 +54,7 @@ namespace Fb.MC.Views
                     {
                         client.BaseAddress = baseAddress;
 
+                        MessagingCenter.Send(this, "Login");
 
                         var response = await client.GetAsync("api/Costumer/get/" + UserName);
                         if(response.StatusCode == System.Net.HttpStatusCode.NotFound)
@@ -77,7 +78,6 @@ namespace Fb.MC.Views
                         }
                     }
                     var navpage = new FreshNavigationContainer(FreshPageModelResolver.ResolvePageModel<MainPageModel>(costumer));
-                    MessagingCenter.Send(this, "Login");
                     await tcs.Task;
                     Application.Current.MainPage = navpage;
                 },

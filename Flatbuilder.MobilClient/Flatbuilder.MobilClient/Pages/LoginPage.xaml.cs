@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamanimation;
 using Xamarin.Forms;
@@ -25,7 +26,16 @@ namespace Fb.MC.Views
             MessagingCenter.Subscribe<LoginPageModel>(this, "Login",
                 async (sender) =>
                 {
-                    await LPage.Animate(new FlipAnimation {Duration = "1000" });
+                    Lottie.Forms.AnimationView anim = new Lottie.Forms.AnimationView
+                    {
+                        Animation = "material_wave_loading.json",
+                        Loop = true,
+                        AutoPlay = true,
+                        VerticalOptions = LayoutOptions.FillAndExpand,
+                        HorizontalOptions = LayoutOptions.FillAndExpand
+                    };
+                    LPage.Content = anim;
+
                     sender.tcs.SetResult(true);
                 });
             InitializeComponent();
